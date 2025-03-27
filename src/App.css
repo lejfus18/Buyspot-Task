@@ -1,38 +1,111 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+body {
+  font-family: Arial, sans-serif;
+
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app{
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  
+}
+
+/*Using display grid to create the layout of the containers. Display grid has a default column count of 12*/
+.container {
+  display: grid;
+  gap: 20px;
+  height: 100vh;
+  width: 100%;
+
+}
+
+.project-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
   color: white;
+  padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.overlay h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.overlay p {
+  font-size: 14px;
+  margin-bottom: 20px;
+  max-width: 90%;
+}
+
+.read-more {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  text-decoration: underline;
+}
+/*To make it responsive i've change the grid layout of the columns to 1 fr so that there's only 1 main column*/
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 250px);
+    height: auto;
   }
-  to {
-    transform: rotate(360deg);
-  }
+  
+ 
+}
+
+.striped-overlay {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none; 
+  display: grid;
+  grid-template-columns: repeat(23, 1fr);  /*Repeating the columns 23 since there are 12 stripes in the image preview but we only need 23 and
+  not 24 since our function creates 12 stripes but only 11 of them have a empty space to the right the 12-th one doesnt have it*/
+}
+
+.stripe {
+  background-color: rgba(255, 0, 0, 0.2);
+  height: 100%;
+  grid-column: auto; 
 }
